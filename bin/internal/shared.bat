@@ -99,9 +99,9 @@ GOTO :after_subroutine
     REM Detect which PowerShell executable is available on the Host
     REM PowerShell version <= 5: PowerShell.exe
     REM PowerShell version >= 6: pwsh.exe
-    WHERE /Q pwsh.exe && (
+    pwsh.exe -Command "exit" >nul 2>&1 && (
         SET powershell_executable=pwsh.exe
-    ) || WHERE /Q PowerShell.exe && (
+    ) || powershell.exe -Command "exit" >nul 2>&1 && (
         SET powershell_executable=PowerShell.exe
     ) || (
         ECHO Error: PowerShell executable not found.                        1>&2
